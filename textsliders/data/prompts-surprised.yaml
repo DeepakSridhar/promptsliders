@@ -1,0 +1,101 @@
+- target: male white person
+  positive: male white person, surprised
+  unconditional: male white person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: male white person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: male black person
+  positive: male black person, surprised
+  unconditional: male black person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: male black person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: male indian person
+  positive: male indian person, surprised
+  unconditional: male indian person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: male indian person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: male asian person
+  positive: male asian person, surprised
+  unconditional: male asian person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: male asian person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: male hispanic person
+  positive: male hispanic person, surprised
+  unconditional: male hispanic person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: male hispanic person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: female white person
+  positive: female white person, surprised
+  unconditional: female white person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: female white person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: female black person
+  positive: female black person, surprised
+  unconditional: female black person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: female black person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: female indian person
+  positive: female indian person, surprised
+  unconditional: female indian person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: female indian person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: female asian person
+  positive: female asian person, surprised
+  unconditional: female asian person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: female asian person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+- target: female hispanic person
+  positive: female hispanic person, surprised
+  unconditional: female hispanic person, calm, relaxed face, neutral expression, at ease, composed
+  neutral: female hispanic person
+  guidance: 4
+  rank: 4
+  action: enhance
+  resolution: 512
+  dynamic_resolution: false
+  batch_size: 1
+#  wide eyes, raised eyebrows, open mouth,

@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# slider files
+*.bin
+*.pt
+*.pkl
+
 # C extensions
 *.so
 
