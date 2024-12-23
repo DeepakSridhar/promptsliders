@@ -66,6 +66,13 @@ A full training run takes ~1-2 hours on one A10 GPU.
 
 ### Inference
 
+If you have issues in running the code `TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'  `, install the earlier version of diffusers
+
+```bash
+pip install diffusers==0.20.2
+pip install huggingface-hub==0.21
+```
+
 Once you have trained a model using above command, the inference can be done simply using the `StableDiffusionPipeline` or `StableDiffusionXLPipeline` wih the following script. Make sure to modify the concept name to your concept and the output is at `output/age-slider_prompt/learned_embeds.safetensors`.
 
 ```bash
