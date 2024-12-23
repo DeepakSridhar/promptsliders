@@ -66,7 +66,13 @@ A full training run takes ~1-2 hours on one A10 GPU.
 
 ### Inference
 
-Once you have trained a model using above command, the inference can be done simply using the `StableDiffusionPipeline` wih the following script. Make sure to modify your prompt.
+Once you have trained a model using above command, the inference can be done simply using the `StableDiffusionPipeline` or StableDiffusionXLPipeline wih the following script. Make sure to modify the concept name to your concept and the output is at "output/age-slider_prompt/learned_embeds.safetensors".
+
+```bash
+python inference-promptsliders-sdxl.py age
+```
+
+To run inference with SD with default scale, 
 
 ```bash
 python inference_sd.py $path_to_the_saved_embedding $token_name
