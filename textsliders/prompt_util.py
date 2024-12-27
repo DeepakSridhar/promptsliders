@@ -112,12 +112,13 @@ class PromptEmbedsPair:
         positive_latents: torch.FloatTensor,  # "van gogh"
         unconditional_latents: torch.FloatTensor,  # ""
         neutral_latents: torch.FloatTensor,  # ""
+        scale: float = 1.0,
     ) -> torch.FloatTensor:
         """Target latents are going not to have the positive concept."""
         return self.loss_fn(
             target_latents,
             neutral_latents
-            - self.guidance_scale * (positive_latents - unconditional_latents)
+            - scale * self.guidance_scale * (positive_latents - unconditional_latents)
         )
     
 
@@ -127,12 +128,13 @@ class PromptEmbedsPair:
         positive_latents: torch.FloatTensor,  # "van gogh"
         unconditional_latents: torch.FloatTensor,  # ""
         neutral_latents: torch.FloatTensor,  # ""
+        scale: float = 1.0,
     ):
         """Target latents are going to have the positive concept."""
         return self.loss_fn(
             target_latents,
             neutral_latents
-            + self.guidance_scale * (positive_latents - unconditional_latents)
+            + scale * self.guidance_scale * (positive_latents - unconditional_latents)
         )
 
     def loss(

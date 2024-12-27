@@ -97,6 +97,25 @@ def encode_prompts(
     return text_embeddings
 
 
+def encode_prompts_slider(
+    tokenizer: CLIPTokenizer,
+    text_encoder: CLIPTokenizer,
+    prompts: List[str],
+    num_images_per_prompt: int = 1,
+    sc: float = 1.0,
+):
+
+    text_tokens = text_tokenize(tokenizer, prompts)
+    idx = text_tokens.argmax(-1)
+    text_embeddings = text_encode(text_encoder, text_tokens)
+    batch_indices = torch.arange(len(text_tokens))
+    text_embeddings[batch_indices, idx, :] = sc * text_embeddings[batch_indices, idx, :]
+        
+    
+
+    return text_embeddings
+
+
 # https://github.com/huggingface/diffusers/blob/78922ed7c7e66c20aa95159c7b7a6057ba7d590d/src/diffusers/pipelines/stable_diffusion_xl/pipeline_stable_diffusion_xl.py#L334-L348
 def text_encode_xl(
     text_encoder: SDXL_TEXT_ENCODER_TYPE,
@@ -133,6 +152,39 @@ def encode_prompts_xl(
         )
 
         text_embeds_list.append(text_embeds)
+
+    bs_embed = pooled_text_embeds.shape[0]
+    pooled_text_embeds = pooled_text_embeds.repeat(1, num_images_per_prompt).view(
+        bs_embed * num_images_per_prompt, -1
+    )
+
+    return torch.concat(text_embeds_list, dim=-1), pooled_text_embeds
+
+
+def encode_prompts_xl_slider(
+    tokenizers: List[CLIPTokenizer],
+    text_encoders: List[SDXL_TEXT_ENCODER_TYPE],
+    prompts: List[str],
+    num_images_per_prompt: int = 1,
+    sc: float = 1.0,
+) -> Tuple[torch.FloatTensor, torch.FloatTensor]:
+    # text_encoder and text_encoder_2's penuultimate layer's output
+    text_embeds_list = []
+    pooled_text_embeds = None  # always text_encoder_2's pool
+    k = 0
+    for tokenizer, text_encoder in zip(tokenizers, text_encoders):
+        text_tokens_input_ids = text_tokenize(tokenizer, prompts)
+        
+        idx = text_tokens_input_ids.argmax(-1)
+        text_embeds, pooled_text_embeds = text_encode_xl(
+            text_encoder, text_tokens_input_ids, num_images_per_prompt
+        )
+        batch_indices = torch.arange(len(text_tokens_input_ids))
+        if k == 0:
+            text_embeds[batch_indices, idx, :] = sc * text_embeds[batch_indices, idx, :]
+        
+        text_embeds_list.append(text_embeds)
+        k += 1
 
     bs_embed = pooled_text_embeds.shape[0]
     pooled_text_embeds = pooled_text_embeds.repeat(1, num_images_per_prompt).view(

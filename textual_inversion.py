@@ -914,8 +914,9 @@ def main():
                 torch.randint(0, len(prompt_pairs), (1,)).item()
             ]
             tprompt = prompt_pair.settings.target + f', {placeholder_token}'
-            ti_prompt_1 = train_util.encode_prompts(
-                            tokenizer, text_encoder, [tprompt]
+            sc = float(random.choice([idx for idx in range(3)]))
+            ti_prompt_1 = train_util.encode_prompts_slider(
+                            tokenizer, text_encoder, [tprompt], sc=sc,
                         )
 
             # 1 ~ 49 からランダム
@@ -1000,8 +1001,8 @@ def main():
             
         with accelerator.accumulate(text_encoder):
             
-            ti_prompt = train_util.encode_prompts(
-                            tokenizer, text_encoder, [tprompt]
+            ti_prompt = train_util.encode_prompts_slider(
+                            tokenizer, text_encoder, [tprompt], sc=sc,
                         )
             target_latents = train_util.predict_noise(
                 unet,
@@ -1025,6 +1026,7 @@ def main():
                 positive_latents=positive_latents,
                 neutral_latents=neutral_latents,
                 unconditional_latents=unconditional_latents,
+                scale=sc,
             )
 
             accelerator.backward(loss)
