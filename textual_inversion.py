@@ -779,30 +779,6 @@ def main():
                 )
             )
 
-    # # Dataset and DataLoaders creation:
-    # train_dataset = TextualInversionDataset(
-    #     data_root=args.train_data_dir,
-    #     tokenizer=tokenizer,
-    #     size=args.resolution,
-    #     placeholder_token=(" ".join(tokenizer.convert_ids_to_tokens(placeholder_token_ids))),
-    #     repeats=args.repeats,
-    #     learnable_property=args.learnable_property,
-    #     center_crop=args.center_crop,
-    #     set="train",
-    # )
-    # train_dataloader = torch.utils.data.DataLoader(
-    #     train_dataset, batch_size=args.train_batch_size, shuffle=True, num_workers=args.dataloader_num_workers
-    # )
-    # if args.validation_epochs is not None:
-    #     warnings.warn(
-    #         f"FutureWarning: You are doing logging with validation_epochs={args.validation_epochs}."
-    #         " Deprecated validation_epochs in favor of `validation_steps`"
-    #         f"Setting `args.validation_steps` to {args.validation_epochs * len(train_dataset)}",
-    #         FutureWarning,
-    #         stacklevel=2,
-    #     )
-    #     args.validation_steps = args.validation_epochs * len(train_dataset)
-
     # Scheduler and math around the number of training steps.
     overrode_max_train_steps = False
     num_update_steps_per_epoch = math.ceil(args.max_train_steps / args.gradient_accumulation_steps)
