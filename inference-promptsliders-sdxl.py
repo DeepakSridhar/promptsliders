@@ -504,7 +504,7 @@ for prompt in prompts:
         image_list = []
         for scale in scales:
             generator = torch.manual_seed(seed)
-            images = pipe(prompt, num_images_per_prompt=1, num_inference_steps=50, generator=generator, start_noise=start_noise, scale=scale, unet=pipe.unet, pipe=pipe).images[0]
+            images = pipe(prompt, target_size=(512, 512), num_images_per_prompt=1, num_inference_steps=50, generator=generator, start_noise=start_noise, scale=scale, unet=pipe.unet, pipe=pipe).images[0]
             image_list.append(images)
         
         fig, ax = plt.subplots(1, len(image_list), figsize=(20,4))
