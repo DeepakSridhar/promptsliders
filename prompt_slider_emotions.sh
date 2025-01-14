@@ -18,7 +18,7 @@ for EMOTION in "${emotions[@]}"; do
         --placeholder_token="<$EMOTION-lora>" \
         --initializer_token="$EMOTION" \
         --mixed_precision="no" \
-        --resolution=768 \
+        --resolution=512 \
         --train_batch_size=1 \
         --gradient_accumulation_steps=1 \
         --max_train_steps=2000 \
