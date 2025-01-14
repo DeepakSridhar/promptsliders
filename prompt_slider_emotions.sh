@@ -27,7 +27,7 @@ for EMOTION in "${emotions[@]}"; do
         --lr_scheduler="constant" \
         --lr_warmup_steps=0 \
         --save_as_full_pipeline \
-        --output_dir=outputs/v2-$EMOTION-promptslider/ \
+        --output_dir=outputs/$EMOTION-promptslider/ \
         --prompts_file="textsliders/data/prompts-$EMOTION.yaml"
     
     echo "Completed: $EMOTION"
